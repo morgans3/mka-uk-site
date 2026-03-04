@@ -1,0 +1,27 @@
+---
+interface Props {
+  name: string;
+  rank: string;
+  bio: string;
+  image?: string;
+}
+
+const { name, rank, bio, image } = Astro.props;
+---
+
+<div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+  {image ? (
+    <img src={image} alt={name} class="w-full aspect-square object-cover" />
+  ) : (
+    <div class="w-full aspect-square bg-gray-200 flex items-center justify-center">
+      <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    </div>
+  )}
+  <div class="p-5">
+    <h3 class="font-heading font-bold text-dark text-lg">{name}</h3>
+    <span class="inline-block text-primary-500 text-sm font-medium mt-1">{rank}</span>
+    <p class="text-gray-600 text-sm mt-3 leading-relaxed">{bio}</p>
+  </div>
+</div>

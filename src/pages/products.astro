@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+const products = [
+  {
+    name: 'Club Gi (Karate Suit)',
+    description: 'Official Musuko Karate Academy gi with embroidered club badge. Available in children and adult sizes.',
+    price: 'From £25.00',
+  },
+  {
+    name: 'White Belt',
+    description: 'Starter white belt included with your first gi purchase. Quality cotton belt suitable for training.',
+    price: '£5.00',
+  },
+  {
+    name: 'Coloured Belts',
+    description: 'Grading belts from orange through to brown. Available to purchase after successful grading.',
+    price: 'From £6.00',
+  },
+  {
+    name: 'Club T-Shirt',
+    description: 'Musuko Karate Academy branded t-shirt. Great for training and casual wear. Various colours available.',
+    price: '£12.00',
+  },
+  {
+    name: 'Sparring Mitts',
+    description: 'WKF-approved sparring mitts for kumite training and competition. Red or blue.',
+    price: 'From £15.00',
+  },
+  {
+    name: 'Gum Shield',
+    description: 'Mouthguard for sparring. Boil-and-bite fitting for a comfortable, secure fit.',
+    price: '£5.00',
+  },
+];
+---
+
+<BaseLayout title="Products" description="Club merchandise and equipment available at Musuko Karate Academy.">
+  <Hero title="Club Products" subtitle="Equipment and merchandise available from the club" />
+
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        label="Shop"
+        heading="What We Offer"
+        subtitle="All products are available to purchase at training sessions. Speak to an instructor to order."
+      />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {products.map((product) => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+
+      <!-- How to Order -->
+      <div class="mt-16 bg-gray-50 rounded-xl p-6 md:p-10 text-center">
+        <h3 class="font-heading font-bold text-dark text-xl mb-3">How to Order</h3>
+        <p class="text-gray-600 max-w-xl mx-auto mb-6">
+          All products can be purchased directly at any of our training sessions. Simply
+          speak to one of our instructors and they'll be happy to help. We can also arrange
+          orders via our Facebook page.
+        </p>
+        <a
+          href="https://www.facebook.com/musukokarateacademy/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+          Message us on Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

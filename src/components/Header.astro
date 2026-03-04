@@ -1,0 +1,140 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/instructors', label: 'Instructors' },
+  { href: '/products', label: 'Products' },
+  { href: '/news', label: 'News' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function isActive(href: string): boolean {
+  const fullHref = href === '/' ? base || '/' : `${base}${href}`;
+  const normalised = currentPath === '' ? '/' : currentPath;
+  if (href === '/') return normalised === (base || '/');
+  return normalised.startsWith(fullHref);
+}
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href={`${base}/`} class="flex items-center gap-3 shrink-0">
+        <img
+          src={`${import.meta.env.BASE_URL}images/badge-clear-bg.png`}
+          alt="Musuko Karate Academy"
+          class="h-10 w-10 md:h-12 md:w-12"
+        />
+        <div class="hidden sm:block">
+          <span class="block font-heading font-bold text-dark text-sm md:text-base leading-tight">
+            Musuko Karate Academy
+          </span>
+          <span class="block text-xs text-gray-500">Traditional Shotokan Karate</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href === '/' ? `${base}/` : `${base}${link.href}`}
+            class:list={[
+              'px-3 py-2 text-sm font-medium rounded-md transition-colors',
+              isActive(link.href)
+                ? 'text-primary-600 bg-primary-50'
+                : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="lg:hidden p-2 -mr-2 text-gray-700 hover:text-primary-600"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-50 hidden"
+  aria-hidden="true"
+>
+  <!-- Backdrop -->
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/50"></div>
+
+  <!-- Panel -->
+  <div class="absolute right-0 top-0 h-full w-72 bg-white shadow-xl flex flex-col">
+    <!-- Close button -->
+    <div class="flex items-center justify-between px-4 h-16 border-b border-gray-100">
+      <span class="font-heading font-bold text-dark text-sm">Menu</span>
+      <button
+        id="mobile-menu-close"
+        type="button"
+        class="p-2 -mr-2 text-gray-500 hover:text-gray-700"
+        aria-label="Close menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="flex-1 overflow-y-auto py-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href === '/' ? `${base}/` : `${base}${link.href}`}
+          class:list={[
+            'block px-6 py-3 text-base font-medium transition-colors',
+            isActive(link.href)
+              ? 'text-primary-600 bg-primary-50'
+              : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const close = document.getElementById('mobile-menu-close');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+
+  function openMenu() {
+    menu?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', openMenu);
+  close?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+</script>

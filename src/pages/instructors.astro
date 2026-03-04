@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import InstructorCard from '../components/InstructorCard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+const instructors = [
+  {
+    name: 'Sensei Simon Crowther',
+    rank: 'Head Coach',
+    bio: 'Head coach of Musuko Karate Academy and EKNGB-registered instructor. Sensei Simon has coached students to national team selection for the European Senior Karate Championships, and is dedicated to developing competitors and karateka of all levels.',
+  },
+];
+---
+
+<BaseLayout title="Instructors" description="Meet the experienced instructors at Musuko Karate Academy.">
+  <Hero title="Our Instructors" subtitle="Meet the team behind Musuko Karate Academy" />
+
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+        {instructors.map((instructor) => (
+          <InstructorCard {...instructor} />
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-gray-500 text-sm">
+          More instructors to be added. Contact us if you'd like to join the teaching team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const values = [
+  {
+    title: 'Discipline',
+    description: 'Karate teaches self-control and focus that carries into every aspect of life.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  },
+  {
+    title: 'Respect',
+    description: 'Mutual respect between students and instructors is at the heart of everything we do.',
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  },
+  {
+    title: 'Community',
+    description: 'More than a club — we are a family that supports each other on and off the mat.',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
+  },
+  {
+    title: 'Excellence',
+    description: 'We strive for continuous improvement, pushing ourselves to be the best we can be.',
+    icon: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
+  },
+];
+---
+
+<BaseLayout title="About" description="Learn about Musuko Karate Academy, our history, values, and the art of Shotokan karate.">
+  <Hero title="About Us" subtitle="Our story, our values, and the art of Shotokan" />
+
+  <!-- Our Story -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div>
+          <SectionHeading
+            label="Our Story"
+            heading="A Club Built on Tradition"
+            centered={false}
+          />
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Based in Poulton-le-Fylde, Lancashire, Musuko Karate Academy provides a safe,
+              friendly, and disciplined environment to learn the traditional Japanese art
+              of Shotokan karate. Led by Sensei Simon Crowther, our club has built a
+              strong reputation in the local and national karate community.
+            </p>
+            <p>
+              We are proud to be registered with the English Karate National Governing
+              Body (EKNGB), and our students regularly compete at regional and national
+              level. Most recently, Musuko students were selected to represent England
+              at the European Senior Karate Championships.
+            </p>
+            <p>
+              We welcome complete beginners through to advanced practitioners. Whether
+              you're looking to build fitness, learn self-defence, or compete at
+              tournament level, there's a place for you at Musuko.
+            </p>
+          </div>
+        </div>
+        <img
+          src={`${import.meta.env.BASE_URL}images/england_team.jpg`}
+          alt="Musuko Karate Academy members selected for England team"
+          class="rounded-xl w-full aspect-[3/4] object-cover object-top cursor-pointer"
+          loading="lazy"
+          data-lightbox
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        label="What We Stand For"
+        heading="Our Values"
+        subtitle="These principles guide everything we do at Musuko Karate Academy."
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((value) => (
+          <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+            <div class="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={value.icon} />
+              </svg>
+            </div>
+            <h3 class="font-heading font-bold text-dark mb-2">{value.title}</h3>
+            <p class="text-sm text-gray-600">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Competition Success -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        label="Achievements"
+        heading="Competition Success"
+        subtitle="Our students regularly compete at regional and national level, bringing home medals and representing England."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <figure>
+          <img
+            src={`${import.meta.env.BASE_URL}images/high_standards2.jpg`}
+            alt="Musuko Karate Academy student performing kata at national competition"
+            class="rounded-xl w-full aspect-square object-cover object-top cursor-pointer"
+            loading="lazy"
+            data-lightbox
+          />
+          <figcaption class="text-sm text-gray-500 mt-2 text-center">Representing Musuko at national kata competition</figcaption>
+        </figure>
+        <figure>
+          <img
+            src={`${import.meta.env.BASE_URL}images/high_standards.jpg`}
+            alt="Musuko Karate Academy student performing kata at national competition"
+            class="rounded-xl w-full aspect-square object-cover object-top cursor-pointer"
+            loading="lazy"
+            data-lightbox
+          />
+          <figcaption class="text-sm text-gray-500 mt-2 text-center">Competing at national level in kata</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is Shotokan -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        label="The Art"
+        heading="What is Shotokan Karate?"
+      />
+      <div class="space-y-4 text-gray-600 leading-relaxed text-center">
+        <p>
+          Shotokan is one of the four major styles of karate and was developed by
+          Gichin Funakoshi in the early 20th century. It is characterised by its
+          deep, powerful stances and strong linear techniques.
+        </p>
+        <p>
+          Training in Shotokan karate develops the whole person — mind, body, and
+          spirit. Students learn kihon (basic techniques), kata (forms), and kumite
+          (sparring), building a well-rounded martial arts foundation.
+        </p>
+        <p>
+          The word "Shotokan" literally means "Shoto's house", where Shoto was
+          Funakoshi's pen name, meaning "pine waves". Today, Shotokan is practised
+          by millions of people worldwide and is recognised as one of the most
+          effective and respected martial arts.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

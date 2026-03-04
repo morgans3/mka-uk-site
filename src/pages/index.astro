@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+---
+
+<BaseLayout title="Home">
+  <Hero
+    title="Musuko Karate Academy"
+    subtitle="We offer a safe, friendly, disciplined environment to learn the traditional Japanese art of Shotokan."
+    fullHeight
+    showCta
+    ctaText="Get Started"
+    backgroundImage="header.jpg"
+  />
+
+  <!-- Features Section -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        label="Why Musuko?"
+        heading="Three Pillars of Training"
+        subtitle="Our approach to martial arts combines traditional values with a welcoming, supportive environment."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <FeatureCard
+          title="Traditional Shotokan"
+          description="Learn authentic Shotokan karate techniques passed down through generations, building a strong foundation in this respected martial art."
+        >
+          <svg slot="icon" class="w-6 h-6 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </FeatureCard>
+
+        <FeatureCard
+          title="All Ages Welcome"
+          description="Classes for children and adults of all abilities. Whether you're 5 or 55, there's a place for you at Musuko Karate Academy."
+        >
+          <svg slot="icon" class="w-6 h-6 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </FeatureCard>
+
+        <FeatureCard
+          title="Grading Pathway"
+          description="A clear, structured progression from white belt to black belt. Track your development with regular gradings and belt assessments."
+        >
+          <svg slot="icon" class="w-6 h-6 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+        </FeatureCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Snippet -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <img
+          src={`${import.meta.env.BASE_URL}images/leaderboard.jpg`}
+          alt="Musuko Karate Academy students on the podium at the Central England International Open"
+          class="rounded-xl w-full aspect-[4/3] object-cover order-2 lg:order-1 cursor-pointer"
+          loading="lazy"
+          data-lightbox
+        />
+
+        <!-- Text -->
+        <div class="order-1 lg:order-2">
+          <SectionHeading
+            label="About Us"
+            heading="Building Confidence Through Karate"
+            centered={false}
+          />
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Musuko Karate Academy is a welcoming club dedicated to teaching traditional
+            Shotokan karate. We believe in building not just martial arts skills, but
+            confidence, discipline, and respect in every student.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Family friendly environment
+            </li>
+            <li class="flex items-center gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Experienced, qualified instructors
+            </li>
+            <li class="flex items-center gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Regular gradings and competitions
+            </li>
+          </ul>
+          <a
+            href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/about`}
+            class="inline-flex items-center text-primary-500 hover:text-primary-600 font-semibold transition-colors"
+          >
+            Learn more about us
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>
